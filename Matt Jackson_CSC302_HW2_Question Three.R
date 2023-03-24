@@ -1,0 +1,11 @@
+setwd('C:/Users/mjack/Downloads/Rscripts/DATA')
+data = read.csv("C:/Users/mjack/Downloads/Rscripts/DATA/metabolite.csv", header = TRUE)
+library(dplyr)
+data %>% count(Label)
+colSums(is.na(data))
+library(tidyr)
+data2 = data %>% drop_na(Dopamine)
+colSums(is.na(data2))
+data2 <- data2 %>% mutate(across(c4.OH.Pro, ~replace_na(., median(., na.rm=TRUE))))
+colSums(is.na(data2))
+
